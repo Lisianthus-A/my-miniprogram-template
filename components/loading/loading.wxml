@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="mask" wx:if="{{showMask}}" />
+  <view class="loader">
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+    <view class="square"></view>
+  </view>
+  <text class="loading-text">加载中</text>
+</view>
