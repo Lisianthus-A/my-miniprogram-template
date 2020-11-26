@@ -25,8 +25,8 @@ App({
       },
       set(target, prop, value) {
         target[prop] = value;
-        Object.values(callbacks).forEach(fn => {  //执行回调
-          fn();
+        Object.getOwnPropertySymbols(callbacks).forEach(symbol => {  //执行所有回调
+          callbacks[symbol]();
         });
         return true;
       }
@@ -92,14 +92,12 @@ App({
 
   },
   addGlobalListener(fn) {  //添加全局数据改变时执行的回调
-    const key = Date.now().toString(36);
+    const key = Symbol();  //生成唯一key
     callbacks[key] = fn;
     return key;
   },
   removeGlobalListener(key) {  //移除回调
-    if (callbacks[key]) {
-      delete callbacks[key];
-    }
+    delete callbacks[key];
   },
   alert(msg) {
     wx.showToast({
