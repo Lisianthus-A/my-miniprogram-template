@@ -8,7 +8,6 @@ const baseParams = {  //请求基础参数
   },
   data: null
 };
-const baseUrl = `${serverUrl}/api/file`;
 
 const callbacks = {};  //全局数据改变时执行的回调
 
@@ -32,19 +31,17 @@ App({
       }
     })
   },
-
-  async ajax(url, params = {}) {  //请求调用函数  params.url优先级比url高
-    const result = await new Promise(resolve => {
+  ajax(urlOrParams, params = {}) {
+    const options = typeof urlOrParams === 'object'
+      ? { ...baseParams, ...urlOrParams, url: serverUrl + urlOrParams.url } //以 ajax(params) 形式调用
+      : { ...baseParams, ...params, url: serverUrl + urlOrParams };  //以 ajax(url, params) 形式调用
+    return new Promise(resolve => {
       wx.request({
-        url: baseUrl + url,
-        ...baseParams,
-        ...params,
+        ...options,
         complete: res => resolve(res.data)
       });
-    });
-    return result;
+    }).catch(err => console.log('Error:', err));
   },
-
   login() {  //登录
     return new Promise(resolve => {
       const self = this;
@@ -107,8 +104,5 @@ App({
   },
   getBaseParams() {
     return baseParams;
-  },
-  getBaseUrl() {
-    return baseUrl;
   }
 });
