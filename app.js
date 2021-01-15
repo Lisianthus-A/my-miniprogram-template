@@ -5,8 +5,7 @@ const baseParams = {  //请求基础参数
   header: {
     'Content-Type': 'application/json',
     'Accept': 'application/json, */*'
-  },
-  data: null
+  }
 };
 
 const callbacks = {};  //全局数据改变时执行的回调
