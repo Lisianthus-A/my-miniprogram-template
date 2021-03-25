@@ -63,13 +63,13 @@ App({
                 //设置请求url与params
                 if (self.globalData.isWx) {  //微信
                     params = {
-                        url: `${serverUrl}/api/login/minifile/init`,
+                        url: `/api/login/minifile/init`,
                         method: 'POST',
                         data: { code: res.code }
                     };
                 } else {  //企业微信
                     params = {
-                        url: `${serverUrl}/api/login/file/${res.code}/init`
+                        url: `/api/login/file/${res.code}/init`
                     };
                 }
 
