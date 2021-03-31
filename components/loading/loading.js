@@ -4,7 +4,7 @@ Component({
             type: Boolean,
             value: false
         },
-        text: {
+        text: {  //自定义加载文字
             type: String,
             value: '加载中'
         }
